@@ -24,17 +24,29 @@ function generaUnElemento (tagtype, classname) {
     return element
 }
 
+// GENERARE un array di numeri in ordine casuale in un determinato range
+const newArrNum = genArrayRandomNum (1, 100, 100);
+console.log(newArrNum);
+
 
 // generare gli elementi con un ciclo for utilizzando la funzione appena creata
-for (let i = 1; i <= 100; i++) {
+for (let i = 0; i < newArrNum.length; i++) {
     const newElement = generaUnElemento("div", "square");
 
-    // utilizzo append per linkare il numero all'elemento
-    newElement.append(i);
+    // DICHIAR0 la variabile per ogni elemento del nuovo array
+    let numeroCellaIesimo = newArrNum[i];
 
-    // utilizzo append per linkare gli elementi alla griglia
+    // UTILIZZO append per linkare il numero all'elemento
+    newElement.append(numeroCellaIesimo);
+
+    // UTILIZZO append per linkare gli elementi alla griglia
     mainContainer.append(newElement);
 
+    if (numeroCellaIesimo > 1 && numeroCellaIesimo < 18) {
+        newElement.classList.add("bg-red")
+    } else {
+        newElement.classList.add("bg-blue")
+    }
 
     // creo la funzione che permette di colorare la casella al click
     newElement.addEventListener("click",
@@ -69,7 +81,8 @@ function genRandomNumMinMax (min, max) {
     return Math.floor(Math.random()* (max - min + 1)) + min;
 }
 
-/* FUNZIONE che genera un array contenente una serie di numeri in ordine casuale in un range. • minNum è il numero più piccolo che può esserci nell'array
+/* FUNZIONE che genera un array contenente una serie di numeri in ordine casuale in un range. 
+• minNum è il numero più piccolo che può esserci nell'array
 • maxNum è il numero più grande che può esserci nell'array
 • lengthArr è la lunghezza dell'array. Esempio: se è 10, l'array avrà massimo 10 numeri
 */
@@ -95,6 +108,3 @@ function genArrayRandomNum (minNum, maxNum, lengthArr) {
 }
 
 
-// GENERARE un array di numeri in ordine casuale in un determinato range
-const newArrNum = genArrayRandomNum (1, 64, 16);
-console.log(newArrNum);
