@@ -64,19 +64,22 @@ playBtn.addEventListener("click",
 )
 
 /* ============================================================================= */
-// funzione che genera un numero random in un determinato range
+// FUNZIONE che genera un numero random in un determinato range
 function genRandomNumMinMax (min, max) {
     return Math.floor(Math.random()* (max - min + 1)) + min;
 }
 
-// funzione che genera un array contenente una serie di numeri in ordine casuale in un range
-function genArrayRandomNum (minNum, maxNum) {
+/* FUNZIONE che genera un array contenente una serie di numeri in ordine casuale in un range. • minNum è il numero più piccolo che può esserci nell'array
+• maxNum è il numero più grande che può esserci nell'array
+• lengthArr è la lunghezza dell'array. Esempio: se è 10, l'array avrà massimo 10 numeri
+*/
+function genArrayRandomNum (minNum, maxNum, lengthArr) {
 
     // genero l'array da riempire
     const arrayToGen = [];
 
     // ciclo che riempe l'array
-    while (arrayToGen.length < maxNum) {
+    while (arrayToGen.length < lengthArr) {
 
         // generare un numero random in un range
         let newNumber = genRandomNumMinMax(minNum, maxNum);
@@ -90,4 +93,8 @@ function genArrayRandomNum (minNum, maxNum) {
 
     return arrayToGen;
 }
- 
+
+
+// GENERARE un array di numeri in ordine casuale in un determinato range
+const newArrNum = genArrayRandomNum (1, 64, 16);
+console.log(newArrNum);
