@@ -13,26 +13,32 @@ Al termine della partita il software deve comunicare il punteggio, cioè il nume
 
 
 
-// selezione del contenitore nel main
+// SELEZIONE del contenitore nel main
 const mainContainer = document.getElementById("main-container");
 
+// SELEZIONE del bottone "play"
+const playBtn = document.getElementById("play-btn");
 
-// creare una funzione che permetta di generare elementi e di assegnare una classe
+// SELEZIONE del wrapper
+const mainWrapper = document.getElementById("main-wrapper");
+
+
+// FUNZIONE che permetta di generare elementi e di assegnare una classe
 function generaUnElemento (tagtype, classname) {
     const element = document.createElement(tagtype);
     element.classList.add(classname);
     return element
-}
+};
 
 // GENERARE un array di 16 numeri (le bombe) in ordine casuale in un range che va da 1 a 100
 const newArrNum = genArrayRandomNum (1, 100, 16);
 console.log(newArrNum);
 
-// DICHIARO la variabile punteggio
+// DICHIARO la variabile "punteggio"
 let score = 0;
 
 
-// generare gli elementi con un ciclo for utilizzando la funzione appena creata
+// GENERARE gli elementi con un ciclo for utilizzando la funzione appena creata
 for (let i = 1; i <= 100; i++) {
 
     const newElement = generaUnElemento("div", "square");
@@ -57,39 +63,29 @@ for (let i = 1; i <= 100; i++) {
                 newElement.classList.add("square-point");
                 score++;
             }
-            console.log("Punti: ", score);
-
+            
             if (score === 84) {
                 alert("Hai vinto!");
             }
+            console.log("Punti: ", score);
         }
-    )
-}
+    );
+};
 
 
-
-
-// selezione del bottone "play"
-const playBtn = document.getElementById("play-btn");
-
-// selezione del wrapper
-const mainWrapper = document.getElementById("main-wrapper");
-
-
-// funzione che, al click del bottone, fa comparire i quadrati
+// FUNZIONE che, al click del bottone, fa comparire i quadrati
 playBtn.addEventListener("click",
 
     function () {
         mainWrapper.classList.add("d-block");
     }
-
-)
+);
 
 /* ============================================================================= */
 // FUNZIONE che genera un numero random in un determinato range
 function genRandomNumMinMax (min, max) {
     return Math.floor(Math.random()* (max - min + 1)) + min;
-}
+};
 
 /* FUNZIONE che genera un array contenente una serie di numeri in ordine casuale in un range. 
 • minNum è il numero più piccolo che può esserci nell'array
@@ -115,6 +111,12 @@ function genArrayRandomNum (minNum, maxNum, lengthArr) {
     }
 
     return arrayToGen;
-}
+};
 
 
+
+/*
+COSA NON RIUSCIVO A FARE E COME L'HO RISOLTO
+
+Avendo già un ciclo for che generava i numeri da 1 a 100 (riga 42), non capivo come potevo collegare questa struttura al nuovo array di 16 numeri casuali. Non avevo considerato che l'array era già stato dichiarato nel main script, perciò potevo andare a riprenderlo in seguito all'interno del ciclo for. Alla fine è bastato inserirlo in una funzione (sempre all'interno del ciclo for), che mi permetteva di confrontare tutti i numeri dell'array nuovo con i 100 elementi creati, e da lì il tutto ha funzionato.
+*/
