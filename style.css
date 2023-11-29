@@ -55,6 +55,10 @@ main {
     display: block;
 }
 
+.d-none {
+    display: none;
+}
+
 .container {
     border: 1px solid black;
     display: flex;
@@ -72,12 +76,14 @@ main {
     padding: 25px 0;
 }
 
-.bg-blue {
+.square-point {
     background-color: blue;
+    color: white;
 }
 
-.bg-red {
+.square-bomb {
     background-color: red;
+    color: white;
 }
 
 footer {
