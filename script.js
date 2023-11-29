@@ -76,7 +76,7 @@ function genArrayRandomNum (minNum, maxNum) {
     const arrayToGen = [];
 
     // ciclo che riempe l'array
-    while (arrayToGen.length < maxNum)
+    while (arrayToGen.length < maxNum) {
 
         // generare un numero random in un range
         let newNumber = genRandomNumMinMax(minNum, maxNum);
@@ -85,4 +85,9 @@ function genArrayRandomNum (minNum, maxNum) {
         if (!arrayToGen.includes(newNumber)) {
             arrayToGen.push(newNumber);
         }
+
+    }
+
+    return arrayToGen;
 }
+ 
