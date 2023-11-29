@@ -24,39 +24,49 @@ function generaUnElemento (tagtype, classname) {
     return element
 }
 
-// GENERARE un array di numeri in ordine casuale in un determinato range
-const newArrNum = genArrayRandomNum (1, 100, 100);
+// GENERARE un array di 16 numeri (le bombe) in ordine casuale in un range che va da 1 a 100
+const newArrNum = genArrayRandomNum (1, 100, 16);
 console.log(newArrNum);
+
+// DICHIARO la variabile punteggio
+let score = 0;
 
 
 // generare gli elementi con un ciclo for utilizzando la funzione appena creata
-for (let i = 0; i < newArrNum.length; i++) {
+for (let i = 1; i <= 100; i++) {
+
     const newElement = generaUnElemento("div", "square");
 
-    // DICHIAR0 la variabile per ogni elemento del nuovo array
-    let numeroCellaIesimo = newArrNum[i];
-
     // UTILIZZO append per linkare il numero all'elemento
-    newElement.append(numeroCellaIesimo);
+    newElement.append(i);
 
     // UTILIZZO append per linkare gli elementi alla griglia
     mainContainer.append(newElement);
 
-    if (numeroCellaIesimo > 1 && numeroCellaIesimo < 18) {
-        newElement.classList.add("bg-red")
-    } else {
-        newElement.classList.add("bg-blue")
-    }
-
-    // creo la funzione che permette di colorare la casella al click
+    // FUNZIONE che permette di colorare la casella al click
     newElement.addEventListener("click",
     
         function () {
-            newElement.classList.add("bg-green");
-            console.log(i);
+            if (newArrNum.includes(i)) {
+                newElement.classList.add("square-bomb");
+                alert(`Hai perso. Il tuo punteggio è stato di: ${score} punti`);
+
+                // comando trovato su internet che ricarica la pagina
+                window.location.reload();
+            } else {
+                newElement.classList.add("square-point");
+                score++;
+            }
+            console.log("Punti: ", score);
+
+            if (score === 84) {
+                alert("Hai vinto!");
+            }
         }
     )
 }
+
+
 
 
 // selezione del bottone "play"
