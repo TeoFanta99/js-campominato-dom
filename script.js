@@ -62,6 +62,7 @@ for (let i = 1; i <= 100; i++) {
             } else {
                 newElement.classList.add("square-point");
                 score++;
+                console.log(`hai cliccato sulla casella n: ${i}`);
             }
             
             if (score === 84) {
